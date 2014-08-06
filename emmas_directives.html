@@ -1,0 +1,31 @@
+<!doctype html>
+
+<html ng-app>
+
+  <head>
+    <script src='js/angular.js'></script>
+    <script src='app/controllers/emmasSongController.js'></script>    
+  </head>
+
+  <body ng-controller="SongsController">
+    Filter: <input type="text" ng-model="artistFilter.artist"/>
+    <table>
+      <tr>
+        <th ng-click="doSort('artist')">Artist</th>
+        <th ng-click="doSort('title')">Title</th>
+        <th ng-click="doSort('duration')">Duration</th>
+        <th ng-click="doSort('releaseDate')">Release Date</th>
+        <th ng-click="doSort('price')">Price</th>
+      </tr>
+      <tr ng-repeat="song in songs | filter:artistFilter | orderBy:sortBy:reverse">
+        <!-- <tr ng-repeat="cust in customers"> -->
+        <td>{{song.artist}}</td>
+        <td>{{song.title | uppercase}}</td>
+        <td>{{song.duration}}</td>
+        <td>{{song.releaseDate | date:'shortDate'}}</td>
+        <td>{{song.price | currency}} </td>
+      </tr>
+    </table>
+  </body>
+
+</html>

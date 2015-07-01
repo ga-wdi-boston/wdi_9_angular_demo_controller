@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html ng-app="petsApp">
+<head>
+  <title>Pets</title>
+  <script type="text/javascript" src="bower_components/angular/angular.js"></script>
+  <script type="text/javascript" src="app/petsApp.js"></script>
+  <script type="text/javascript" src="app/controllers/petsController.js"></script>
+</head>
+<!- Associating the PetsController with this view. Now this view can access
+the PetsController
+
+var petsCtrl = new PetsController();
+-->
+<body ng-controller="PetsController">
+<h3> Pets</h3>
+<br/>
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Species</th>
+    <th>Age</th>
+  </tr>
+  <tr ng-repeat="pet in pets">
+    <td>{{pet.name}}</td>
+    <td>{{pet.species}}</td>    
+    <td>{{pet.age}}</td>        
+  </tr>
+</table>
+
+<p>Total number of Pets: {{ totalPets() }} </p>
+
+<p>Oldest Pet is {{ oldestPet().name }}, she is {{ oldestPet().age }} years old</p>
+
+</body>
+</html>

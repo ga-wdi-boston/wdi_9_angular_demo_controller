@@ -1,6 +1,6 @@
 ## Angular Controllers, ViewModel and Modules.
 
-We are going to dive into Angular Controllers, ViewModels and Modules. 
+We are going to dive into Angular Controllers, ViewModels and Modules.
 
 ## Objectives
 
@@ -16,23 +16,23 @@ We are going to dive into Angular Controllers, ViewModels and Modules.
 ## Overview
 _"AngularJS is JavaScript framework developed by Google. It intents to provide solid base for the development of CRUD Single-Page Applications (SPA). SPA is web application, which once loaded, does not require full page reload when the user performs any actions with it. This means that all application resources (data, templates, scripts, styles) should be loaded with the initial request or better – the information and resources should be loaded on demand. Since most of the CRUD applications has common characteristics and requirements, AngularJS intents to provide the optimal set of them out-of-the-box. ..."_ [AngularJS in Patterns](http://blog.mgechev.com/2014/05/08/angularjs-in-patterns-part-1-overview-of-angularjs/)
 
-Few important features of AngularJS are:  
+Few important features of AngularJS are:
 
-* two-way data binding _(Done)_  
-* dependency injection _(In this lesson)_  
-* separation of concerns _(In this lesson)_  
-* testability  
-* abstraction _(Some in this lesson. More later)_  
+* two-way data binding _(Done)_
+* dependency injection _(In this lesson)_
+* separation of concerns _(In this lesson)_
+* testability
+* abstraction _(Some in this lesson. More later)_
 
 ![Angular Overview](AngularComponentOverview1.png)
 
 We will be looking at Controllers, $scope and Modules in this lesson. We covered Views and directive in the last lesson, [Angular Views and Directives](https://github.com/ga-wdi-boston/wdi_9_angular_demo_directives)
 
-## Demo 
+## Demo
 
 #### Setup
 
-We have a js directory that will contain the Angular javascript, angular.js.
+We have a `bower.json` file that lists angular as a dependency. We need to run `bower install` to get a copy of angular into our directory.
 _At the end of the lesson we will have an app/controllers directory where the the controllers are defined._
 
 #### ViewModel and $scope
@@ -47,14 +47,14 @@ In Angular there is an implementation of a design pattern named _ViewModel_. The
 
 Rails hides the mechanism that allows you to share properties between Controllers and Views. In Rails all one needs to do is create an instance variable in the Controller, @foo, and it becomes available to the View.
 
-In Angular, one must _explicitly_ set a property on the ViewModel, $scope, in the Controller for it to become available in the View. 
+In Angular, one must _explicitly_ set a property on the ViewModel, $scope, in the Controller for it to become available in the View.
 
 For example, in order to share a property between a Controller and a View one __must__ set this property on the ViewModel, $scope.
 
-In the Controller:  
+In the Controller:
 
 ```
-$scope.joe = {name: 'Joe', age: 38};  
+$scope.joe = {name: 'Joe', age: 38};
 $scope.dogYears = 7;
 ```
 
@@ -76,7 +76,7 @@ __Let's start with this code in directives_last.html from the previous View/Dire
 <!document html>
 <html ng-app>
   <head>
-    <script type='text/javascript' src='js/angular.js'></script>
+    <script type='text/javascript' src='bower_components/angular/angular.js'></script>
   </head>
   <body ng-init="customers=[{joined: '2000-12-02', name:'John', city:'Chandler', orderTotal: 9.9956}, {joined: '1965-01-25',name:'Zed', city:'Las Vegas', orderTotal: 19.99},{joined: '1944-06-15',name:'Tina', city:'New York', orderTotal:44.99}, {joined: '1995-03-28',name:'Dave', city:'Seattle', orderTotal:101.50}]">
     <h3>Customers</h3>
@@ -103,12 +103,12 @@ __Let's start with this code in directives_last.html from the previous View/Dire
 
 ```
 
-We are going to:  
-1. Create a directory, app/controllers, that will contain all the Angular Controllers.  
-	``mkdir -p app/controllers``  
-2. Create a Controller file and add code, _see below_.  
-3. Move the customers Array definition out of the the View, ng-init, and define it as a property on the $scope in the Controller. _Eventually, this data will come from the backend_.  
-4. Move the sort click handlers from the view into the Controller.  
+We are going to:
+1. Create a directory, app/controllers, that will contain all the Angular Controllers.
+	``mkdir -p app/controllers``
+2. Create a Controller file and add code, _see below_.
+3. Move the customers Array definition out of the the View, ng-init, and define it as a property on the $scope in the Controller. _Eventually, this data will come from the backend_.
+4. Move the sort click handlers from the view into the Controller.
 
 
 __Add this to app/controllers/customersController.js__
@@ -132,7 +132,7 @@ function CustomersController($scope){
 
 ```
 
-__Copy the directives_last.html to controllers.html.__  
+__Copy the directives_last.html to controllers.html.__
 
 _Finished code is in controllers1_done.html_
 
@@ -140,7 +140,7 @@ _Finished code is in controllers1_done.html_
  ...
     <!-- 2. Move code into a Controller. -->
     <script type='text/javascript' src='app/controllers/customersController.js'></script>
-    
+
  ...
    <!-- 3. Removed customers data from ng-init into the Controller -->
   <body>
@@ -150,14 +150,14 @@ _Finished code is in controllers1_done.html_
         <th ng-click="doSort('name')">Name</th>
         <th ng-click="doSort('city')">City</th>
         <th ng-click="doSort('orderTotal')">Order Total</th>
-        <th ng-click="doSort('joined')">Joined</th>    
+        <th ng-click="doSort('joined')">Joined</th>
 ```
 
 
-In the above:  
-* We are using the MVVM pattern by using a ViewModel, $scope.   
-* We are using __dependency injection__ to inject a new instance of $scope into the new instance of a CustomersController that was created for this HTTP Request.  
-* We are accessing the variables set in the $scope inside our View.  
+In the above:
+* We are using the MVVM pattern by using a ViewModel, $scope.
+* We are using __dependency injection__ to inject a new instance of $scope into the new instance of a CustomersController that was created for this HTTP Request.
+* We are accessing the variables set in the $scope inside our View.
 
 
 ## Lab 1
@@ -166,7 +166,7 @@ In the above:
 
 #### Modules.
 
-Angular Modules are used to encapsulate and namespace the components of the Angular application. 
+Angular Modules are used to encapsulate and namespace the components of the Angular application.
 
 Modules will also allow us to explictly define the app's dependencies, the libraries the app depends on.
 
@@ -178,8 +178,8 @@ _Finished code is in app/app_done.js_
 
 ```
 (function customersAppIIFE(){
-  // Create a Module for this app with a name of 'customersApp'                                                              
-  // It has NO dependencies, empty Array as the second param   
+  // Create a Module for this app with a name of 'customersApp'
+  // It has NO dependencies, empty Array as the second param
   angular.module('customersApp', []);
 
 })();
@@ -226,5 +226,5 @@ _Finished code is in app/customerControllers2_done.js_
 
 [API Documentation](https://docs.angularjs.org/api)
 
-This is like the $.ajax in JQuery.  
-[Ajax HTTP Service](https://docs.angularjs.org/api/ng/service/$http) 
+This is like the $.ajax in JQuery.
+[Ajax HTTP Service](https://docs.angularjs.org/api/ng/service/$http)

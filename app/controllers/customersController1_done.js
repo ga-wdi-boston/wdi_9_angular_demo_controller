@@ -6,7 +6,7 @@ function CustomersController($scope){
   $scope.sortBy = "name";
   $scope.reverse = false;
 
-  // 4. Define a sort click handlers
+  // 4. Define a sort click handler
   $scope.doSort = function(propName){
     $scope.sortBy = propName;
     $scope.reverse = !$scope.reverse;
